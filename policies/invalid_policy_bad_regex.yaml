@@ -1,0 +1,12 @@
+policy:
+  policy_id: "POL_INVALID_BAD_REGEX"
+  version: "1.0.0"
+  name: "Invalid Policy Bad Regex"
+  rules:
+    - id: "BAD_REGEX_01"
+      name: "Rule with invalid regex pattern"
+      category: "Test"
+      action: "BLOCK"
+      reason_code: "BAD_REGEX_REASON"
+      condition:
+        pattern: "(?i)(unclosed_group_[0-9]+"  # Unclosed parenthesis (Syntax error)

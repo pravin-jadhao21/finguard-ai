@@ -1,0 +1,13 @@
+policy:
+  policy_id: "POL_INVALID_BAD_ACTION"
+  version: "1.0.0"
+  name: "Invalid Policy Bad Action"
+  rules:
+    - id: "BAD_RULE_01"
+      name: "Rule with invalid action"
+      category: "Test"
+      action: "INVALID_ACTION_NAME"  # Invalid enum value
+      reason_code: "BAD_REASON"
+      condition:
+        keywords:
+          - "test"

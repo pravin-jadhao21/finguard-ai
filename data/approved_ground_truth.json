@@ -1,0 +1,51 @@
+{
+  "dataset_metadata": {
+    "version": "1.0.0",
+    "name": "BFSI Approved Synthetic Ground-Truth Reference Data",
+    "effective_date": "2026-10-01",
+    "status": "ACTIVE"
+  },
+  "products": {
+    "fixed_deposit": {
+      "product_name": "Fixed Term Savings Deposit",
+      "supported_fields": {
+        "interest_rate": "6.5%",
+        "rate_numeric": 6.5,
+        "min_tenure": "12 months",
+        "currency": "USD"
+      }
+    },
+    "savings_account": {
+      "product_name": "Standard High-Yield Savings Account",
+      "supported_fields": {
+        "interest_rate": "3.5%",
+        "rate_numeric": 3.5,
+        "min_balance": "$1,000",
+        "currency": "USD"
+      }
+    },
+    "personal_loan": {
+      "product_name": "Unsecured Personal Loan",
+      "supported_fields": {
+        "interest_rate": "8.9%",
+        "rate_numeric": 8.9,
+        "max_tenure": "60 months",
+        "currency": "USD"
+      }
+    },
+    "home_loan": {
+      "product_name": "Fixed-Rate Residential Mortgage",
+      "supported_fields": {
+        "interest_rate": "6.8%",
+        "rate_numeric": 6.8,
+        "max_tenure": "30 years",
+        "currency": "USD"
+      }
+    }
+  },
+  "approved_faqs": {
+    "branch_hours": "Monday to Friday 9:00 AM to 5:00 PM EST",
+    "customer_support_phone": "1-800-555-0199",
+    "routing_number": "123456789"
+  }
+}

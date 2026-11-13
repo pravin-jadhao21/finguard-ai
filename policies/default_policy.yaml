@@ -1,0 +1,55 @@
+policy:
+  policy_id: "POL_DEFAULT_BASELINE"
+  version: "1.0.0"
+  name: "BFSI Core Baseline Security Policy"
+  description: "Phase 3 baseline policy for deterministic security evaluation."
+  
+  sanitization:
+    unicode_normalization: "NFKC"
+    strip_control_characters: true
+    strip_zero_width_spaces: true
+    max_payload_bytes: 65536
+
+  pii_pci_redaction:
+    enabled: true
+    mask_credit_cards: true
+    require_luhn_validation: true
+    mask_ssn: true
+    mask_iban: true
+    mask_email: true
+    mask_phone: true
+    
+  rules:
+    - id: "PCI_CARD_TOKENIZE"
+      name: "Payment Card Industry Credit Card Tokenizer"
+      category: "PCI-DSS"
+      action: "TOKENIZE"
+      priority: 40
+      weight: 20
+      reason_code: "PRIVACY_TOKENIZE_CREDIT_CARD"
+      replacement_token: "[TOKEN_CARD_SECURE]"
+      condition:
+        pattern: "\\b(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14})\\b"
+
+    - id: "PII_SSN_REDACT"
+      name: "Social Security Number Redactor"
+      category: "PII"
+      action: "REDACT"
+      priority: 30
+      weight: 15
+      reason_code: "PRIVACY_REDACT_SSN"
+      replacement_token: "[REDACTED_SSN]"
+      condition:
+        pattern: "\\b\\d{3}-\\d{2}-\\d{4}\\b"
+
+    - id: "GEN_001_ALLOW"
+      name: "General Banking Query Allowed"
+      category: "General"
+      action: "ALLOW"
+      priority: 10
+      weight: 0
+      reason_code: "POLICY_ALLOW_SANCTIONED_QUERY"
+      condition:
+        keywords:
+          - "interest rates"
+          - "branch hours"
